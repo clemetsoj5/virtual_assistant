@@ -1,5 +1,6 @@
 import pyttsx3
 import speech_recognition as speech
+import datetime 
 
 def output(text):
     my_assistant = pyttsx3.init()
@@ -12,6 +13,23 @@ def output(text):
 
     my_assistant.runAndWait()
 
+def tellDay():
+     
+    # This function is for telling the
+    # day of the week
+    day = datetime.datetime.today().weekday() + 1
+     
+    #this line tells us about the number
+    # that will help us in telling the day
+    Day_dict = {1: 'Monday', 2: 'Tuesday',
+                3: 'Wednesday', 4: 'Thursday',
+                5: 'Friday', 6: 'Saturday',
+                7: 'Sunday'}
+     
+    if day in Day_dict.keys():
+        day_of_the_week = Day_dict[day]
+        print(day_of_the_week)
+        output("The day is " + day_of_the_week)
 
 def greet_user():
     # greeting user when the program starts
