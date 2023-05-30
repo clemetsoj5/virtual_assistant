@@ -1,6 +1,9 @@
+
 import pyttsx3
 import speech_recognition as speech
+import webbrowser 
 import datetime 
+ 
 
 def output(text):
     my_assistant = pyttsx3.init()
@@ -13,23 +16,23 @@ def output(text):
 
     my_assistant.runAndWait()
 
-def tellDay():
+def whichDay():
      
-    # This function is for telling the
-    # day of the week
-    day = datetime.datetime.today().weekday() + 1
+    currentDay = datetime.datetime.today().weekday()
      
-    #this line tells us about the number
-    # that will help us in telling the day
-    Day_dict = {1: 'Monday', 2: 'Tuesday',
-                3: 'Wednesday', 4: 'Thursday',
-                5: 'Friday', 6: 'Saturday',
-                7: 'Sunday'}
+
+    day_count = {0: 'Monday', 
+                1: 'Tuesday',
+                2: 'Wednesday', 
+                3: 'Thursday',
+                4: 'Friday', 
+                5: 'Saturday',
+                6: 'Sunday'}
      
-    if day in Day_dict.keys():
-        day_of_the_week = Day_dict[day]
-        print(day_of_the_week)
-        output("The day is " + day_of_the_week)
+    if currentDay in day_count.keys():
+        week_day = day_count[currentDay]
+        print(week_day)
+        output("Today is currently " + week_day)
 
 def greet_user():
     # greeting user when the program starts
@@ -41,12 +44,12 @@ def input_command():
     with speech.Microphone() as source:
         print('Listening for command')
 
-        speech.pause_threshold = 0.7
-        audio = speech.listen(source)
+        in_voice.pause_threshold = 0.7
+        audio = in_voice.listen(source)
 
         try:
             print("Processing")
-            Query = speech.recognize_google(audio, language='en-in')
+            Query = in_voice.recognize_google(audio, language='en-in')
             print("the command is printed=", Query)
 
         except Exception as e:
@@ -62,6 +65,10 @@ def input_ready():
     while True:
     
         user_input = input_command().lower()
+
+        if "what day is it" in user_input:
+            whichDay()
+            continue
         
 
 
