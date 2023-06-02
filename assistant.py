@@ -34,6 +34,13 @@ def whichDay():
         print(week_day)
         output("Today is currently " + week_day)
 
+def whatTime():
+    currTime = str(datetime.datetime.now())
+    currHour = currTime[11:13]
+    currMin = currTime[14:16]
+
+    output("The current time is: "+currHour+" "+currMin)
+
 def greet_user():
     # greeting user when the program starts
     output("Hello there, how may I assist you today?")
@@ -54,6 +61,7 @@ def input_command():
 
         except Exception as e:
             print(e)
+            output("Couldn't quite understand. Could you try again? ")
             print("Couldn't quite understand. Could you try again? ")
             return "None"
         return Query
@@ -68,6 +76,9 @@ def input_ready():
 
         if "what day is it" in user_input:
             whichDay()
+            continue
+        elif "what time is it" in user_input:
+            whatTime()
             continue
         
 
