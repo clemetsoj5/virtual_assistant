@@ -80,6 +80,9 @@ def input_ready():
         elif "what time is it" in user_input:
             whatTime()
             continue
+        elif "exit" in user_input:
+            output("Alright, have a great day!")
+            exit()
         
 
 
